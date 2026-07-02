@@ -33,7 +33,7 @@ Data source: 2M+ active listings from Poland's leading car marketplaces, updated
 ## Prerequisites
 
 - Python 3.9+
-- A CarDossier API key — [get one here](https://car-dossier.com/en/api/pricing) (starts at $49 for 5,000 credits)
+- A CarDossier API key — [register for free](https://car-dossier.com/en/api/pricing) to get **50 free credits** (no credit card required), or purchase a paid package starting at $49 for 5,000 credits
 
 ## Installation
 
@@ -123,14 +123,17 @@ FAQ: [car-dossier.com/en/api/faq/](https://car-dossier.com/en/api/faq/)
 
 The CarDossier Market API uses a pay-as-you-go credit system. Credits never expire.
 
-| Package  | Price | Credits | ~Valuation calls |
-|----------|-------|---------|-----------------|
-| Starter  | $49   | 5,000   | ~625            |
-| Growth   | $129  | 15,000  | ~1,875          |
-| Pro      | $299  | 40,000  | ~5,000          |
-| Business | $699  | 100,000 | ~12,500         |
+> **Free Trial:** Register at [car-dossier.com/en/api/pricing](https://car-dossier.com/en/api/pricing) to receive **50 free credits** instantly — no credit card required. Enough for ~6 market valuation calls.
 
-[Get your API key →](https://car-dossier.com/en/api/pricing)
+| Package      | Price | Credits  | ~Valuation calls |
+|--------------|-------|----------|------------------|
+| **Free Trial** | **$0** | **50** | **~6** |
+| Starter      | $49   | 5,000    | ~625             |
+| Growth       | $129  | 15,000   | ~1,875           |
+| Pro          | $299  | 40,000   | ~5,000           |
+| Business     | $699  | 100,000  | ~12,500          |
+
+[Start for free — get 50 credits →](https://car-dossier.com/en/api/pricing)
 
 ## License
 

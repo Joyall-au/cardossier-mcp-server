@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cardossier-mcp-server"
-version = "1.0.1"
+version = "1.0.2"
 description = "MCP Server for CarDossier Market API — Polish used car market data (valuations, price history, liquidity, regional pricing)"
 readme = "README.md"
 license = { text = "MIT" }
