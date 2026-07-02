@@ -1,3 +1,32 @@
+Metadata-Version: 2.4
+Name: cardossier-mcp-server
+Version: 1.0.1
+Summary: MCP Server for CarDossier Market API — Polish used car market data (valuations, price history, liquidity, regional pricing)
+Home-page: https://car-dossier.com/en/api/
+Author: CarDossier
+Author-email: hello@car-dossier.com
+License: MIT
+Project-URL: Homepage, https://car-dossier.com/en/api/
+Project-URL: Documentation, https://car-dossier.com/en/api/docs
+Project-URL: Repository, https://github.com/Joyall-au/cardossier-mcp-server
+Project-URL: Bug Tracker, https://github.com/Joyall-au/cardossier-mcp-server/issues
+Keywords: mcp,car,poland,automotive,valuation,api,ai,llm
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: mcp>=1.0.0
+Requires-Dist: requests>=2.28.0
+Dynamic: license-file
+
 # CarDossier Poland Market API — MCP Server
 
 mcp-name: io.github.Joyall-au/cardossier-market-api

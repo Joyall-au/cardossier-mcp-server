@@ -1,17 +1,17 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.Joyall-au/cardossier-market-api",
-  "description": "Real-time Polish used car market data: valuations, price history, market liquidity, valuation factors, and regional pricing. Powered by 2M+ active listings. Built for AI agents and developers.",
+  "description": "Polish used car market API: valuations, price history, liquidity & regional data. 2M+ listings.",
   "repository": {
     "url": "https://github.com/Joyall-au/cardossier-mcp-server",
     "source": "github"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packages": [
     {
       "registryType": "pypi",
       "identifier": "cardossier-mcp-server",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "transport": {
         "type": "stdio"
       },
