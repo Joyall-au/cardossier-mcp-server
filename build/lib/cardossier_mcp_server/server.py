@@ -20,10 +20,14 @@ import requests
 from typing import Optional, Dict, Any
 
 try:
-    from mcp.server.fastmcp import FastMCP
+    from mcp.server.fastmcp import FastMCP  # mcp SDK 1.x
 except ImportError:
-    print("Error: 'mcp' package not installed. Run: pip install mcp", file=sys.stderr)
-    sys.exit(1)
+    try:
+        from fastmcp import FastMCP  # standalone FastMCP 2.x package
+    except ImportError as _e:
+        print(f"Error: no MCP SDK with FastMCP found ({_e}). "
+              "Run: pip install 'mcp>=1.0,<2.0'  (or: pip install fastmcp)", file=sys.stderr)
+        sys.exit(1)
 
 BASE_URL = "https://car-dossier.com/api/v1"
 
