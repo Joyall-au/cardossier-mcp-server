@@ -1,2 +1,3 @@
 [console_scripts]
 cardossier-mcp = cardossier_mcp_server.server:main
+cardossier-mcp-server = cardossier_mcp_server.server:main

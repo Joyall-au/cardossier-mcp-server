@@ -26,7 +26,7 @@ This server exposes 5 tools that AI agents can call to answer questions like:
 | `get_price_history` | Monthly price trend for up to 24 months | 10 |
 | `get_market_liquidity` | Estimated days-on-market (how fast a car sells) | 6 |
 | `get_valuation_factors` | Price impact of gearbox type, fuel type, import status | 12 |
-| `get_regional_prices` | Price comparison across all 16 Polish voivodeships | 8 |
+| `get_regional_pricing` | Price comparison across all 16 Polish voivodeships | 8 |
 
 Data source: 1.4M+ active listings from Poland's leading car marketplaces, updated daily.
 
@@ -102,8 +102,7 @@ Add to your MCP settings:
 ```json
 {
   "cardossier": {
-    "command": "python",
-    "args": ["/path/to/mcp_server.py"],
+    "command": "cardossier-mcp",
     "env": {
       "CARDOSSIER_API_KEY": "your_api_key_here"
     }
@@ -125,7 +124,7 @@ The agent will call `get_price_history` with `months=12` and return a monthly pr
 
 > **"Compare used Skoda Octavia prices across Polish regions"**
 
-The agent will call `get_regional_prices` and return a breakdown by voivodeship.
+The agent will call `get_regional_pricing` and return a breakdown by voivodeship.
 
 ## API Reference
 

@@ -1,7 +1,6 @@
 LICENSE
 README.md
 pyproject.toml
-setup.cfg
 src/cardossier_mcp_server/__init__.py
 src/cardossier_mcp_server/server.py
 src/cardossier_mcp_server.egg-info/PKG-INFO
