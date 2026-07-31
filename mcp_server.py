@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """
-CarDossier Market API - MCP Server
+CarDossier Poland Market API - MCP Server
 Allows AI assistants (Claude, Cursor, etc.) to query Polish used car market data.
 
-Usage:
-  export CARDOSSIER_API_KEY="your_api_key"
+Works WITHOUT an API key out of the box: the API serves 5 keyless demo calls
+per IP per day with full real data. For more quota, register for a free key
+(50 credits, no card) at https://car-dossier.com/en/api and set it:
+
+  export CARDOSSIER_API_KEY="your_api_key"   # optional
   python mcp-server.py
 """
 import os
@@ -20,11 +23,12 @@ except ImportError:
 
 API_KEY = os.environ.get("CARDOSSIER_API_KEY")
 if not API_KEY:
-    print("Error: CARDOSSIER_API_KEY environment variable not set.", file=sys.stderr)
-    sys.exit(1)
+    print("No CARDOSSIER_API_KEY set — running in keyless demo mode "
+          "(5 free calls/day). Get a free key with 50 credits at "
+          "https://car-dossier.com/en/api", file=sys.stderr)
 
-BASE_URL = "https://api.car-dossier.com/v1"
-HEADERS = {"X-API-Key": API_KEY}
+BASE_URL = "https://car-dossier.com/api/v1"
+HEADERS = {"X-API-Key": API_KEY} if API_KEY else {}
 
 mcp = FastMCP("CarDossier")
 
@@ -48,7 +52,8 @@ def make_request(endpoint: str, params: Dict[str, Any]) -> str:
 def get_market_valuation(make: str, model: str, year: int, fuel_type: Optional[str] = None, gearbox: Optional[str] = None, mileage: Optional[int] = None) -> str:
     """
     Get average, median, P25, and P75 prices for a specific make/model/year in Poland.
-    Optionally filter by fuel_type (Benzyna/Diesel/Hybryda/Elektryczny), gearbox (Manualna/Automatyczna), or mileage.
+    Natural names work: 'VW Golf', 'BMW 3 Series' or '320d', 'Mercedes C-Class', 'Audi A4', 'XC60'.
+    Optional filters: fuel_type (petrol/diesel/hybrid/electric/lpg or Polish values), gearbox (manual/automatic), mileage (km).
     """
     return make_request("/market/valuation", {
         "make": make, "model": model, "year": year,

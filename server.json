@@ -1,25 +1,25 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.Joyall-au/cardossier-market-api",
-  "description": "Polish used car market API: valuations, price history, liquidity & regional data. 2M+ listings.",
+  "description": "Polish used car market API: valuations, price history, liquidity & regional data from 1.4M+ listings. Works without a key (5 demo calls/day).",
   "repository": {
     "url": "https://github.com/Joyall-au/cardossier-mcp-server",
     "source": "github"
   },
-  "version": "1.0.1",
+  "version": "1.0.3",
   "packages": [
     {
       "registryType": "pypi",
       "identifier": "cardossier-mcp-server",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "transport": {
         "type": "stdio"
       },
       "environmentVariables": [
         {
           "name": "CARDOSSIER_API_KEY",
-          "description": "Your CarDossier API key. Get one at https://car-dossier.com/en/api/pricing",
-          "isRequired": true,
+          "description": "Optional CarDossier API key. Without it the keyless demo tier serves 5 calls/day. Get a free key (50 credits) at https://car-dossier.com/en/api",
+          "isRequired": false,
           "isSecret": true,
           "format": "string"
         }

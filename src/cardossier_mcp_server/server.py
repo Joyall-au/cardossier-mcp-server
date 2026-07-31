@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """
-CarDossier Market API - MCP Server
+CarDossier Poland Market API - MCP Server
 Allows AI assistants (Claude, Cursor, Windsurf, etc.) to query Polish used car market data.
 
+Works WITHOUT an API key out of the box: the API serves 5 keyless demo calls per
+IP per day with full real data. Register free (50 credits, no card) at
+https://car-dossier.com/en/api for more quota.
+
 Usage:
-  export CARDOSSIER_API_KEY="your_api_key"
+  export CARDOSSIER_API_KEY="your_api_key"   # optional
   cardossier-mcp
-  # or: python -m cardossier_mcp_server.server
+  # or: cardossier-mcp-server / python -m cardossier_mcp_server.server
 
 mcp-name: io.github.Joyall-au/cardossier-market-api
 """
@@ -21,16 +25,15 @@ except ImportError:
     print("Error: 'mcp' package not installed. Run: pip install mcp", file=sys.stderr)
     sys.exit(1)
 
-BASE_URL = "https://api.car-dossier.com/v1"
+BASE_URL = "https://car-dossier.com/api/v1"
 
 mcp = FastMCP("CarDossier Market API")
 
 
 def _get_headers() -> Dict[str, str]:
+    # No key → keyless demo tier (5 real calls per IP per day)
     api_key = os.environ.get("CARDOSSIER_API_KEY")
-    if not api_key:
-        raise RuntimeError("CARDOSSIER_API_KEY environment variable not set.")
-    return {"X-API-Key": api_key}
+    return {"X-API-Key": api_key} if api_key else {}
 
 
 def make_request(endpoint: str, params: Dict[str, Any]) -> str:
@@ -65,9 +68,10 @@ def get_market_valuation(
 ) -> str:
     """
     Get average, median, P25, and P75 prices for a specific make/model/year in Poland.
-    Optionally filter by fuel_type (Benzyna/Diesel/Hybryda/Elektryczny),
-    gearbox (Manualna/Automatyczna), or mileage.
-    Costs 8 credits per call.
+    Natural names work: 'VW Golf', 'BMW 3 Series' or '320d', 'Mercedes C-Class', 'Audi A4', 'XC60'.
+    Optional filters: fuel_type (petrol/diesel/hybrid/electric/lpg or Polish values),
+    gearbox (manual/automatic), mileage (km, matches a ±30% band).
+    Costs 8 credits per call; failed calls are auto-refunded.
     """
     return make_request(
         "/market/valuation",
@@ -85,7 +89,7 @@ def get_price_history(
 ) -> str:
     """
     Get monthly average price trend for up to 24 months to identify depreciation curves.
-    Costs 5 credits per call.
+    Costs 10 credits per call; failed calls are auto-refunded.
     """
     return make_request(
         "/market/price-history",
@@ -97,7 +101,7 @@ def get_price_history(
 def get_market_liquidity(make: str, model: str, year: int) -> str:
     """
     Get estimated days-on-market (DOM) showing how fast this car typically sells in Poland.
-    Costs 5 credits per call.
+    Costs 6 credits per call; failed calls are auto-refunded.
     """
     return make_request(
         "/market/liquidity",
@@ -109,7 +113,7 @@ def get_market_liquidity(make: str, model: str, year: int) -> str:
 def get_valuation_factors(make: str, model: str, year: int) -> str:
     """
     Quantify the price impact of import status, gearbox type, and fuel type for this car.
-    Costs 8 credits per call.
+    Costs 12 credits per call; failed calls are auto-refunded.
     """
     return make_request(
         "/market/valuation-factors",
@@ -121,7 +125,7 @@ def get_valuation_factors(make: str, model: str, year: int) -> str:
 def get_regional_pricing(make: str, model: str, year: int) -> str:
     """
     Compare average prices across Polish voivodeships vs. the national average.
-    Costs 5 credits per call.
+    Costs 8 credits per call; failed calls are auto-refunded.
     """
     return make_request(
         "/market/regional",
@@ -131,6 +135,9 @@ def get_regional_pricing(make: str, model: str, year: int) -> str:
 
 def main():
     """Entry point for the cardossier-mcp CLI command."""
+    if not os.environ.get("CARDOSSIER_API_KEY"):
+        print("No CARDOSSIER_API_KEY set - running in keyless demo mode (5 free calls/day). "
+              "Get a free key with 50 credits at https://car-dossier.com/en/api", file=sys.stderr)
     print("Starting CarDossier Market API MCP Server...", file=sys.stderr)
     mcp.run()
 

@@ -28,36 +28,51 @@ This server exposes 5 tools that AI agents can call to answer questions like:
 | `get_valuation_factors` | Price impact of gearbox type, fuel type, import status | 12 |
 | `get_regional_prices` | Price comparison across all 16 Polish voivodeships | 8 |
 
-Data source: 2M+ active listings from Poland's leading car marketplaces, updated daily.
+Data source: 1.4M+ active listings from Poland's leading car marketplaces, updated daily.
+
+**Vehicle names are resolved automatically** — `VW Golf`, `BMW 3 Series` / `320d`, `Mercedes C-Class`, `Audi A4`, `XC60` all work; responses show exactly which marketplace models were aggregated. Failed calls are auto-refunded.
+
+## 🚀 Try It Without a Key
+
+The API serves **5 keyless demo calls per IP per day** with full real data, so this server works the moment you install it:
+
+```bash
+pip install cardossier-mcp-server
+cardossier-mcp
+```
+
+For more quota, [register free](https://car-dossier.com/en/api) — 50 credits via email OTP, no credit card — and set `CARDOSSIER_API_KEY`.
 
 ## Prerequisites
 
 - Python 3.9+
-- A CarDossier API key — [register for free](https://car-dossier.com/en/api/pricing) to get **50 free credits** (no credit card required), or purchase a paid package starting at $49 for 5,000 credits
+- Optional: a CarDossier API key — [register for free](https://car-dossier.com/en/api/pricing) to get **50 free credits** (no credit card required), or purchase a paid package starting at $49 for 5,000 credits
 
 ## Installation
 
 ```bash
-# Clone the repository
+# From PyPI (recommended)
+pip install cardossier-mcp-server
+
+# Or from source
 git clone https://github.com/Joyall-au/cardossier-mcp-server.git
 cd cardossier-mcp-server
-
-# Install dependencies
 pip install mcp requests
 ```
 
 ## Usage
 
-### 1. Set your API key
+### 1. (Optional) Set your API key
 
 ```bash
-export CARDOSSIER_API_KEY="your_api_key_here"
+export CARDOSSIER_API_KEY="your_api_key_here"   # omit to use the keyless demo tier
 ```
 
 ### 2. Run the server
 
 ```bash
-python mcp_server.py
+cardossier-mcp
+# or from a source checkout: python mcp_server.py
 ```
 
 ### 3. Connect to Claude Desktop
@@ -71,8 +86,7 @@ Add the following to your Claude Desktop config file:
 {
   "mcpServers": {
     "cardossier": {
-      "command": "python",
-      "args": ["/path/to/cardossier-mcp-server/mcp_server.py"],
+      "command": "cardossier-mcp",
       "env": {
         "CARDOSSIER_API_KEY": "your_api_key_here"
       }
