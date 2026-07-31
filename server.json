@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.Joyall-au/cardossier-market-api",
-  "description": "Polish used car market API: valuations, price history, liquidity & regional data from 1.4M+ listings. Works without a key (5 demo calls/day).",
+  "description": "Polish used-car market data: valuations, price history, liquidity, regional prices. Keyless demo.",
   "repository": {
     "url": "https://github.com/Joyall-au/cardossier-mcp-server",
     "source": "github"
